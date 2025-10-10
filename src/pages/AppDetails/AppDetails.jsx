@@ -26,9 +26,9 @@ const AppDetails = () => {
   const [loading, setLoading] = useState(true);
   const [installed, setInstalled] = useState(false);
 
-  // ✅ Simulate data loading
+  // Simulate data loading
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 100);
+    const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, []);
 
@@ -69,18 +69,25 @@ const AppDetails = () => {
     return num;
   };
 
-  //  Loader Section
+  // ---------- Loader Section ----------
   if (loading) {
     return (
-      <div className="w-full h-screen flex flex-col justify-center items-center bg-[#F8F8F8]">
-        <div className="w-14 h-14 border-4 border-[#632EE3] border-t-transparent rounded-full animate-spin"></div>
-        <p className="mt-4 text-lg font-semibold text-gray-600">
+      <div className="w-screen h-screen flex flex-col justify-center items-center bg-gradient-to-br from-[#f6f4ff] to-[#f0ebff] overflow-hidden">
+        <div className="relative">
+          {/* Outer Gradient Ring */}
+          <div className="w-16 h-16 border-[6px] border-transparent border-t-[#632EE3] border-r-[#9F62F2] rounded-full animate-spin shadow-lg"></div>
+
+          {/* Inner Glow */}
+          <div className="absolute inset-2 bg-gradient-to-tr from-[#632EE3] to-[#9F62F2] opacity-25 rounded-full blur-sm"></div>
+        </div>
+        <p className="mt-6 text-lg font-semibold text-[#632EE3] animate-pulse tracking-wide">
           Loading App Details...
         </p>
       </div>
     );
   }
 
+  // ---------- Main Section ----------
   return (
     <section className="w-full max-w-[100vw] overflow-x-hidden bg-[#F8F8F8] py-12 px-6 lg:px-20">
       {/* -------- App Info Section -------- */}

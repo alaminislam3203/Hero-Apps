@@ -25,12 +25,12 @@ const Installation = () => {
           console.error('Error loading apps:', err);
           setLoading(false);
         });
-    }, 200);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, []);
 
-  // 🔹 Uninstall Logic with SweetAlert
+  // 🔹 Uninstall Logic
   const handleUninstall = (id, title) => {
     Swal.fire({
       title: `Uninstall ${title}?`,
@@ -69,20 +69,6 @@ const Installation = () => {
             title: 'font-bold text-2xl mb-2',
             htmlContainer: 'text-gray-100',
           },
-          showClass: {
-            popup: `
-      animate__animated
-      animate__fadeInDown
-      animate__faster
-    `,
-          },
-          hideClass: {
-            popup: `
-      animate__animated
-      animate__fadeOutUp
-      animate__faster
-    `,
-          },
         });
       }
     });
@@ -92,8 +78,8 @@ const Installation = () => {
   const formatDownloads = num => {
     if (num >= 1000000000)
       return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
-    if (num >= 10000000)
-      return (num / 10000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (num >= 1000000)
+      return (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
     if (num >= 1000) return (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
     return num;
   };
@@ -132,12 +118,18 @@ const Installation = () => {
         </div>
       </div>
 
-      {/* ---------- App Cards ---------- */}
+      {/* ---------- Loader ---------- */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-14 h-14 border-4 border-[#632EE3] border-t-transparent rounded-full animate-spin mb-4"></div>
-          <p className="text-gray-600 font-medium">
-            Loading your installed apps...
+        <div className="w-full min-h-[50vh] flex flex-col items-center justify-center bg-gradient-to-br from-[#f6f4ff] to-[#f0ebff] rounded-2xl shadow-inner">
+          <div className="relative">
+            {/* Outer Gradient Ring */}
+            <div className="w-16 h-16 border-[6px] border-transparent border-t-[#632EE3] border-r-[#9F62F2] rounded-full animate-spin shadow-lg"></div>
+
+            {/* Inner Glow */}
+            <div className="absolute inset-2 bg-gradient-to-tr from-[#632EE3] to-[#9F62F2] opacity-20 rounded-full blur-sm"></div>
+          </div>
+          <p className="mt-6 text-lg font-semibold text-[#632EE3] animate-pulse tracking-wide">
+            Loading Installed Apps...
           </p>
         </div>
       ) : installedApps.length > 0 ? (
