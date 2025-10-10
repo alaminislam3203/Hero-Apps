@@ -38,14 +38,8 @@ const AppDetails = () => {
   const singleApp = data?.find(app => app.id === appId);
   if (!singleApp) return <AppNotFound />;
 
-  const {
-    title,
-    image,
-    downloads,
-    reviews = [],
-    description,
-    size,
-  } = singleApp || {};
+  const { title, image, downloads, reviews, description, size } =
+    singleApp || {};
 
   useEffect(() => {
     const storedApps = getStoredApps();
@@ -141,10 +135,10 @@ const AppDetails = () => {
               <img src={reviewsIcon} alt="Reviews" className="w-10 h-10 mb-2" />
               <p className="text-gray-500 text-sm">Total Reviews</p>
               <h3 className="text-2xl font-extrabold text-[#001931] mt-1">
-                {singleApp?.reviews
-                  ? singleApp.reviews >= 1000
-                    ? `${(singleApp.reviews / 1000).toFixed(1)}K`
-                    : singleApp.reviews
+                {reviews
+                  ? reviews >= 1000
+                    ? `${(reviews / 1000).toFixed(1)}K`
+                    : reviews
                   : '0K'}
               </h3>
             </div>
@@ -177,42 +171,57 @@ const AppDetails = () => {
           Ratings
         </h3>
 
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart
-            data={singleApp?.ratings || []}
-            layout="vertical"
-            margin={{ top: 10, right: 30, left: 40, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-            <XAxis type="number" tick={{ fontSize: 12 }} />
-            <YAxis
-              dataKey="name"
-              type="category"
-              tick={{ fontSize: 14 }}
-              width={80}
-            />
-            <Tooltip
-              formatter={value => `${value.toLocaleString()} users`}
-              contentStyle={{
-                backgroundColor: '#fff',
-                borderRadius: '8px',
-                border: '1px solid #ddd',
+        <div className="w-full h-[250px] sm:h-[300px]">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart
+              data={singleApp?.ratings || []}
+              layout="vertical"
+              margin={{
+                top: 10,
+                right: 10,
+                left: window.innerWidth < 640 ? 20 : 40,
+                bottom: 5,
               }}
-            />
-            <Bar dataKey="count" barSize={20} radius={[4, 4, 4, 4]}>
-              {(singleApp?.ratings || []).map((entry, index) => {
-                const colors = [
-                  '#E53935',
-                  '#FB8C00',
-                  '#FDD835',
-                  '#43A047',
-                  '#1E88E5',
-                ];
-                return <Cell key={`cell-${index}`} fill={colors[index]} />;
-              })}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+              barSize={window.innerWidth < 640 ? 14 : 20}
+            >
+              <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+              <XAxis
+                type="number"
+                tick={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
+              />
+              <YAxis
+                dataKey="name"
+                type="category"
+                tick={{
+                  fontSize: window.innerWidth < 640 ? 11 : 14,
+                  fill: '#111827',
+                }}
+                width={window.innerWidth < 640 ? 60 : 80}
+              />
+              <Tooltip
+                formatter={value => `${value.toLocaleString()} users`}
+                contentStyle={{
+                  backgroundColor: '#fff',
+                  borderRadius: '8px',
+                  border: '1px solid #ddd',
+                  fontSize: window.innerWidth < 640 ? '12px' : '14px',
+                }}
+              />
+              <Bar dataKey="count" radius={[4, 4, 4, 4]}>
+                {(singleApp?.ratings || []).map((entry, index) => {
+                  const colors = [
+                    '#E53935',
+                    '#FB8C00',
+                    '#FDD835',
+                    '#43A047',
+                    '#1E88E5',
+                  ];
+                  return <Cell key={`cell-${index}`} fill={colors[index]} />;
+                })}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       <div className="w-full h-[1px] bg-[#001931] opacity-10 my-10"></div>
