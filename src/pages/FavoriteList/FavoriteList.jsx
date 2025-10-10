@@ -20,7 +20,7 @@ const FavoriteList = () => {
           No apps Install yet
         </h2>
         <p className="text-gray-500 mt-2">
-          Browse apps and add some to your favorites list!
+          Browse apps and add some to your Installed list!
         </p>
       </div>
     );

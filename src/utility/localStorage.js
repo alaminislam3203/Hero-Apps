@@ -37,21 +37,38 @@ const addToStoredDB = (id, title) => {
     storedAppData.push(numericId);
     localStorage.setItem('favoriteList', JSON.stringify(storedAppData));
 
-    //  Success Alert
+    // ✅ Professional Gradient SweetAlert
     Swal.fire({
       icon: 'success',
-      title: 'Installed Successfully!',
-      text: `${title} has been added to your Installation
-       list.`,
-      background: '#00E5FF',
+      title: ' Installed Successfully!',
+      html: `<p style="font-size: 16px; font-weight: 500; color: #f0f0f0;">
+           <b>${title}</b> has been added to your installation list.
+         </p>`,
+      background: 'linear-gradient(135deg, #632EE3, #9F62F2)',
       color: '#fff',
-      confirmButtonColor: '#00ff87',
-      confirmButtonText: 'Awesome!',
+      confirmButtonText: 'Continue',
+      confirmButtonColor: '#00D390',
+      buttonsStyling: false,
       customClass: {
-        popup: 'rounded-xl shadow-lg',
-        title: 'font-semibold text-lg',
+        popup: 'rounded-2xl shadow-2xl p-6',
+        title: 'font-bold text-2xl mb-2',
+        htmlContainer: 'text-gray-100',
         confirmButton:
-          'font-semibold bg-white text-[#00D390] px-4 py-2 rounded-lg hover:bg-gray-100',
+          'font-semibold bg-[#00D390] text-white px-6 py-2 rounded-lg hover:bg-[#00b87b] transition-all duration-300',
+      },
+      showClass: {
+        popup: `
+      animate__animated
+      animate__fadeInDown
+      animate__faster
+    `,
+      },
+      hideClass: {
+        popup: `
+      animate__animated
+      animate__fadeOutUp
+      animate__faster
+    `,
       },
     });
   }

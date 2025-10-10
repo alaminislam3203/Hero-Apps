@@ -7,7 +7,6 @@ const ErrorPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#F9FAFB] px-6 text-center">
-      {/* 🔹 Error Illustration */}
       <img
         src={PageNotFoundImage}
         alt="Error Illustration"

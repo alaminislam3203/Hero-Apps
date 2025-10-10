@@ -52,14 +52,37 @@ const Installation = () => {
           JSON.stringify(updated.map(a => a.id))
         );
 
+        // ✅ Professional Gradient SweetAlert for Uninstall
         Swal.fire({
-          icon: 'success',
-          title: '🗑️ Uninstalled!',
-          text: `${title} has been Uninstall successfully.`,
-          background: '#00E5FF',
+          icon: 'warning',
+          title: '🗑️ Uninstalled Successfully!',
+          html: `<p style="font-size: 16px; font-weight: 500; color: #f0f0f0;">
+           <b>${title}</b> has been removed from your installation list.
+         </p>`,
+          background: 'linear-gradient(135deg, #632EE3, #9F62F2)',
           color: '#fff',
           timer: 2000,
           showConfirmButton: false,
+          buttonsStyling: false,
+          customClass: {
+            popup: 'rounded-2xl shadow-2xl p-6',
+            title: 'font-bold text-2xl mb-2',
+            htmlContainer: 'text-gray-100',
+          },
+          showClass: {
+            popup: `
+      animate__animated
+      animate__fadeInDown
+      animate__faster
+    `,
+          },
+          hideClass: {
+            popup: `
+      animate__animated
+      animate__fadeOutUp
+      animate__faster
+    `,
+          },
         });
       }
     });

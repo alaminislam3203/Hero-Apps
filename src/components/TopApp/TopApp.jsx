@@ -45,12 +45,15 @@ const TopApps = () => {
           </div>
         ))}
       </div>
+
       {/* Show All Button */}
       {!showAll && appsData.length > 8 && (
         <div className="text-center mt-12">
           <button
             onClick={() => setShowAll(true)}
-            className="bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1)_100%)] text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-all duration-300"
+            className="text-white px-8 py-3 rounded-lg font-semibold 
+             bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1)_100%)] 
+             hover:opacity-90 transition-all duration-300"
           >
             Show All
           </button>
