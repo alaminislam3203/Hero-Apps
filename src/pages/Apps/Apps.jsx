@@ -41,7 +41,9 @@ const Apps = () => {
       <div className="text-center mt-10">
         <button
           onClick={() => navigate('/all-apps')}
-          className="bg-[#632EE3] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#4b20b8] transition-all duration-300"
+          className="text-white px-8 py-3 rounded-lg font-semibold 
+             bg-[linear-gradient(125.07deg,rgba(99,46,227,1),rgba(159,98,242,1)_100%)] 
+             hover:opacity-90 transition-all duration-300"
         >
           Show All
         </button>
