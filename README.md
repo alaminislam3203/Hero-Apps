@@ -75,5 +75,5 @@ npm run dev
 ## 🌈 Preview
 
 > 🔗 Live Demo:
-> [https://b12-hero-apps.netlify.app/](https://b12-hero-apps.netlify.app/)  
+> [https://hero-apps-web.netlify.app/](https://hero-apps-web.netlify.app/)  
 > 🧩 Design Inspired by App Store Aesthetics
